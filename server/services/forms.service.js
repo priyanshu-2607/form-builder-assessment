@@ -1,4 +1,5 @@
-﻿import Form from '../models/Form.js';
+import Form from '../models/Form.js';
+import Submission from '../models/Submission.js';
 
 export function listFormSummaries() {
   return Form.find()
@@ -22,10 +23,14 @@ export function deleteFormRecord(id) {
   return Form.findByIdAndDelete(id);
 }
 
-export function addFormSubmission(formId, values) {
-  return Form.findByIdAndUpdate(
-    formId,
-    { $push: { submissions: { values } } },
-    { new: true, select: '_id submissions' },
-  );
+export function createSubmissionRecord(form, values) {
+  const fields = (form.fields || []).map((field) => ({
+    fieldId: field.fieldId,
+    type: field.type,
+    label: field.label,
+    placeholder: field.placeholder || '',
+    value: values?.[field.fieldId] ?? '',
+  }));
+
+  return Submission.create({ formId: form._id, fields });
 }
