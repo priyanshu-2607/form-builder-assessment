@@ -1,6 +1,6 @@
-# Form Builder Assessment — Pepper Cloud
+# Form Builder Assessment - Pepper Cloud
 
-This repository contains a full‑stack form builder assessment. Users can create custom forms, view them with the exact structure created, validate inputs, and submit responses that are stored as submissions.
+This repository contains a full-stack form builder assessment. Users can create custom forms, view them with the exact structure created, validate inputs, and submit responses that are stored as submissions.
 
 ## Highlights
 - Build forms with up to 20 inputs (text, email, password, number, date)
@@ -49,3 +49,10 @@ This repository contains a full‑stack form builder assessment. Users can creat
 - Form renders exactly as created
 - Validations enforced on submit (frontend + backend)
 - Submit creates a `Submission` document linked to the form
+
+### Validation Rules (Industry Standards)
+- `text`: required, max 500 characters
+- `email`: required, valid format, max 254 characters
+- `password`: required, 8-128 characters
+- `number`: required, must be a valid number
+- `date`: required, must be a valid date
