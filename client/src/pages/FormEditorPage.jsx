@@ -204,10 +204,10 @@ export function FormEditorPage({ mode, formId }) {
             placeholder="e.g. name@company.com"
           />
 
-          <button className="ghost-btn" onClick={addField} disabled={!canAdd}>
+          <button className="ghost-btn mt-4" onClick={addField} disabled={!canAdd}>
             Add Input
           </button>
-          <p className="muted">{fields.length}/20 inputs</p>
+          <p className="muted mt-1">{fields.length}/20 inputs</p>
           {error && <p className="error-text">{error}</p>}
         </div>
 

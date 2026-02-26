@@ -8,7 +8,7 @@ import {
   listFormSummaries,
   updateFormRecord,
   deleteFormRecord,
-  addFormSubmission,
+  createSubmissionRecord,
 } from '../services/forms.service.js';
 import asyncHandler from '../middleware/asyncHandler.js';
 
@@ -52,14 +52,11 @@ async function submitFormImpl(req, res) {
   const form = await getFormById(req.params.id);
   if (!form) return res.status(404).json({ message: 'Form not found' });
 
-  const { values, errors } = validateSubmissionPayload(req.body);
+  const { values, errors } = validateSubmissionPayload(req.body, form);
   if (errors.length)
     return res.status(400).json({ message: errors[0], errors });
 
-  const updated = await addFormSubmission(form._id, values);
-  if (!updated) return res.status(404).json({ message: 'Form not found' });
-
-  const submission = updated.submissions[updated.submissions.length - 1];
+  const submission = await createSubmissionRecord(form, values);
   res.status(201).json({ ok: true, submissionId: submission?._id });
 }
 
