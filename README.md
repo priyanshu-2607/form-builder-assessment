@@ -49,5 +49,3 @@ This repository contains a full‑stack form builder assessment. Users can creat
 - Form renders exactly as created
 - Validations enforced on submit (frontend + backend)
 - Submit creates a `Submission` document linked to the form
-
-## Validation Rules (Industry Standards)
